@@ -34,16 +34,16 @@ module.exports = function(grunt) {
         options: {
         },
         files: {
-          'tmp/default_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/default_options': ['test/fixtures/deal1.mp3', 'test/fixtures/deal2.mp3'],
         },
       },
       custom_options: {
         options: {
-          separator: ': ',
-          punctuation: ' !!!',
+          autoplay: true,
+          export: 'mp3,ac3'
         },
         files: {
-          'tmp/custom_options': ['test/fixtures/testing', 'test/fixtures/123'],
+          'tmp/sprite': 'test/fixtures/*.mp3'
         },
       },
     },
@@ -66,6 +66,9 @@ module.exports = function(grunt) {
   // Whenever the "test" task is run, first clean the "tmp" dir, then run this
   // plugin's task(s), then test the result.
   grunt.registerTask('test', ['clean', 'audiospritler', 'nodeunit']);
+
+  // just run, without tests
+  grunt.registerTask('run', ['clean', 'jshint', 'audiospritler']);
 
   // By default, lint and run all tests.
   grunt.registerTask('default', ['jshint', 'test']);

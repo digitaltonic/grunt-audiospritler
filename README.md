@@ -37,50 +37,61 @@ grunt.initConfig({
 
 ### Options
 
-#### options.separator
+These options are identical in data type as they are name to the audiospritler package, and passed through by this Grunt plugin.
+
+#### options.export
 Type: `String`
 Default value: `',  '`
 
-A string value that is used to do something with whatever.
+A comma seperated string value that is used to limit the audio types which are to be exported, by default it will try to export every format the system supports. Example usage is `{ export: 'mp3,aac' }` to limit it to export only mp3 and aac versions.
 
-#### options.punctuation
+
+      silence: 0,         // Add special "silence" track with specified duration.
+      channels: 1,        // Number of channels (1=mono, 2=stereo).
+      rawparts: '',
+#### options.autoplay
+Type: `Boolean`
+Default value: `false`
+
+Determines if Howler should autoplay the file.
+
+#### options.silence
+Type: `Integer`
+Default value: `0`
+
+The amount of
+
+#### options.samplerate
+Type: `Integer`
+Default value: `44100`
+
+The audio sample rate for the exported sound files.
+
+#### options.channels
+Type: `Integer`
+Default value: `1`
+
+Number of channels (1=mono, 2=stereo).
+
+#### options.rawparts
 Type: `String`
-Default value: `'.'`
+Default value: ``
 
-A string value that is used to do something else with whatever else.
+A comma seperated list of formats to be sliced in order for the Web Audio API
 
 ### Usage Examples
 
-#### Default Options
-In this example, the default options are used to do something with whatever. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result would be `Testing, 1 2 3.`
+In this example, we want to make howler autoplay, and export only to mp3 and aac. And, we want to build a sprite from all the wav files in the src/sounds directory to the sprites directory with each sprite having the name my-sound.*
 
 ```js
 grunt.initConfig({
   audiospritler: {
     options: {},
     files: {
-      'dest/default_options': ['src/testing', 'src/123'],
+      'sprite/my-sound': ['src/*.wav'],
     },
   },
 });
-```
-
-#### Custom Options
-In this example, custom options are used to do something else with whatever else. So if the `testing` file has the content `Testing` and the `123` file had the content `1 2 3`, the generated result in this case would be `Testing: 1 2 3 !!!`
-
-```js
-grunt.initConfig({
-  audiospritler: {
-    options: {
-      separator: ': ',
-      punctuation: ' !!!',
-    },
-    files: {
-      'dest/default_options': ['src/testing', 'src/123'],
-    },
-  },
-});
-```
 
 ## Contributing
 In lieu of a formal styleguide, take care to maintain the existing coding style. Add unit tests for any new or changed functionality. Lint and test your code using [Grunt](http://gruntjs.com/).
